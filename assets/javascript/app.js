@@ -1,6 +1,6 @@
 //ready js
 $(document).ready(function () {
-   let topics = ["rick and morty", "family guy", "adventure time", "steven universe", "spongebob squarepants", "venture bros", "simpsons"]
+   let topics = ["rick and morty", "family guy", "adventure time", "steven universe", "spongebob squarepants", "venture bros", "simpsons"];
 
    //initialize variables here
 
@@ -42,7 +42,16 @@ $(document).ready(function () {
          btn.attr("type", "button").addClass("btn-info btn m-1");
          searchbtn.append(btn);
       };
+      let resetbtn = $("<button>").text("reset");
+      resetbtn.addClass("btn btn-danger m-1");
+      searchbtn.append(resetbtn);
    };
+
+   //on click for reset button to clear user made buttons
+   $(document).on("click", ".btn-danger", function() {
+      topics = ["rick and morty", "family guy", "adventure time", "steven universe", "spongebob squarepants", "venture bros", "simpsons"];
+      makeBtn(topics);
+   })
 
    //on click adding button to the searchbtn div
    addBtn.on("click", function (event) {
