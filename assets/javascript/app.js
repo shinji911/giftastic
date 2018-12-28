@@ -23,14 +23,28 @@ $(document).ready(function () {
          for (let u = 0; u < results.length; u++) {
             let picDiv = $("<div>").addClass("float-left mx-2");
             let rating = $("<p>").text("Rating: " + results[u].rating);
-            let gifImg = $("<img>").attr("src", results[u].images.fixed_height.url);
-            picDiv.append(rating);
+            let gifImg = $("<img>").attr("src", results[u].images.fixed_height_still.url);
+            gifImg.attr("data-still", results[u].images.fixed_height_still.url);
+            gifImg.attr("data-ani", results[u].images.fixed_height.url);
+            gifImg.attr("playstate", "false");
             picDiv.append(gifImg);
+            picDiv.append(rating);
             displayDiv.prepend(picDiv);
          };
       }).catch(function () {
          alert("no gifs found");
       });
+   });
+
+   //on click for images to play gif when clicked
+   $(document).on("click", "img", function() {
+      if ($(this).attr("playstate") === "false") {
+         $(this).attr("playstate", "true");
+         $(this).attr("src", $(this).attr("data-ani"));
+      } else {
+         $(this).attr("playstate", "false");
+         $(this).attr("src", $(this).attr("data-still"));
+      }
    });
 
    //function to make button and add on to searchbtn div
@@ -51,7 +65,7 @@ $(document).ready(function () {
    $(document).on("click", ".btn-danger", function() {
       topics = ["rick and morty", "family guy", "adventure time", "steven universe", "spongebob squarepants", "venture bros", "simpsons"];
       makeBtn(topics);
-   })
+   });
 
    //on click adding button to the searchbtn div
    addBtn.on("click", function (event) {
