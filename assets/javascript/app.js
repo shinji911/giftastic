@@ -61,10 +61,11 @@ $(document).ready(function () {
       searchbtn.append(resetbtn);
    };
 
-   //on click for reset button to clear user made buttons
+   //on click for reset button to clear user made buttons and gifs
    $(document).on("click", ".btn-danger", function() {
       topics = ["rick and morty", "family guy", "adventure time", "steven universe", "spongebob squarepants", "venture bros", "simpsons"];
       makeBtn(topics);
+      displayDiv.empty();
    });
 
    //on click adding button to the searchbtn div
